@@ -1,0 +1,102 @@
+html{
+	height:100%;
+	overflow: auto;
+}
+body{
+	height:100%;
+	overflow: auto;
+	margin:0;
+	text-align: center;
+	color:gold;
+	background-color: black;
+}
+h2{
+	color:gold;
+}
+#displayArea{
+	background-color: black;
+}
+#displayArea{
+	height:auto;
+	width:100%;
+/*	display:inline-block;*/
+}
+#wrapper{
+	clear:both;
+	overflow:auto;
+	background-image: url("../images/forest1.jpg");
+	background-size:100% 100%;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+
+#tenImages{
+	display:flex;
+	width:100%;
+	flex-wrap: wrap;
+	overflow-x: auto;
+	height:auto;
+	justify-content:center;
+
+}
+
+.gifDiv{
+	width:auto;
+	height:auto;
+	margin:10px;
+	position:relative;
+	/*display:inline-block;
+*/
+/*	display:inline-flex;*/
+	
+	flex-grow:0;
+	
+	flex-shrink:3;
+}
+.gif_image{
+	width:100%;
+	/*min-width:78px;*/
+	max-height:100%;	
+}
+
+#savedGifs1{
+	
+	
+	display:flex;
+	
+}
+.savedDiv{
+	width:100%;
+/*	display:inline-block;*/
+	flex-grow: .1;
+}
+.saved_image{
+	max-width:70%;
+	height:auto;
+	max-height:250px;
+
+}
+.save_button{
+	position: absolute;
+	left:5px;
+	top:3px;
+	background-color: black;
+	color:pink;
+}
+.rate_p{
+	position:absolute;
+	right:0px;
+	width:68px;
+	bottom:5px;
+	background-color: pink;
+	color:red;
+	margin:0px;
+}
+
+.parent {
+  width: 100px;
+}
+
