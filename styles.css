@@ -1,10 +1,12 @@
+
 html{
 	height:100%;
-	overflow: auto;
+	/*overflow: auto;*/
 }
 body{
 	height:100%;
-	overflow: auto;
+/*	overflow-y:auto;
+	overflow-x:hidden;*/
 	margin:0;
 	text-align: center;
 	color:gold;
@@ -13,6 +15,9 @@ body{
 h2{
 	color:gold;
 }
+
+
+
 #displayArea{
 	background-color: black;
 }
@@ -32,52 +37,131 @@ h2{
 	width:100%;
 	height:100%;
 }
+.outerDiv1{
+	position:relative;
+	height:140px;
+	overflow:hidden;
+}
+#searchedGifs{
+	overflow-y: hidden;
+	overflow-x: scroll;
+	height:auto;
+	width:100%;
+	position:absolute;
+	top: 20px;
+}
 
 #tenImages{
 	display:flex;
-	width:100%;
-	flex-wrap: wrap;
-	overflow-x: auto;
+	width:auto;
 	height:auto;
-	justify-content:center;
-
+	
 }
 
 .gifDiv{
 	width:auto;
-	height:auto;
+	height:100px;
 	margin:10px;
 	position:relative;
-	/*display:inline-block;
-*/
-/*	display:inline-flex;*/
-	
-	flex-grow:0;
-	
-	flex-shrink:3;
 }
 .gif_image{
-	width:100%;
-	/*min-width:78px;*/
+	min-width:100%;
+	height:100px;
 	max-height:100%;	
 }
 
+#savedTitle{
+	clear:both;
+}
+
+.outerDiv2{
+	position:relative;
+	height:240px;
+	overflow:hidden;
+}
+
+#placeHolder{
+	background-color: blue;
+	
+	/*visibility: hidden;*/
+}
+
+#savedGifsContainer{
+	overflow-y: hidden;
+	overflow-x: scroll;
+	height:auto;
+	width:100%;
+	position:absolute;
+	top: 20px;
+
+}
+
 #savedGifs1{
-	
-	
+	width:auto;
+	height:auto;
+	justify-content: center;
 	display:flex;
-	
 }
 .savedDiv{
-	width:100%;
-/*	display:inline-block;*/
-	flex-grow: .1;
+	width:auto;
+	height:200px;
+	margin:10px;
+	position:relative;
+
 }
 .saved_image{
-	max-width:70%;
-	height:auto;
-	max-height:250px;
+	width:auto;
+	height:200px;
+}
 
+.rate_p{
+	position:absolute;
+	left:0px;
+	width:68px;
+	bottom:-15px;
+	background-color: pink;
+	color:red;
+	margin:0px;
+	visibility:hidden;
+
+}
+.op_button{
+	background-color: darkgrey;
+	margin:10px;
+	cursor:pointer;
+	
+}
+
+
+.round_button {
+	
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	
+	background-color:darkgrey;
+
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:darkblue;
+	
+	font-size:17px;
+	padding:7px 25px;
+	
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+.round_button:hover {
+	
+	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+	background-color:#bab1ba;
+}
+.round_buom:0px;
+	right:0px;
+	cursor:pointer;
+}
+.round_button:active {
+	position:relative;
+	top:1px;
 }
 .save_button{
 	position: absolute;
@@ -85,18 +169,26 @@ h2{
 	top:3px;
 	background-color: black;
 	color:pink;
+	cursor:pointer;
 }
-.rate_p{
+.delete_button{
 	position:absolute;
+	bottom:0px;
 	right:0px;
-	width:68px;
-	bottom:5px;
-	background-color: pink;
-	color:red;
-	margin:0px;
+
+.scroll{
+	font-size:30px;
+	cursor:pointer;
+}
+.scrollLabel{
+	font-size:30px;
+}
+.scroll:hover{
+	font-weight:bold;
 }
 
-.parent {
+
+/*.parent {
   width: 100px;
-}
+}*/
 

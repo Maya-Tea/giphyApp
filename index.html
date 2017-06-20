@@ -2,36 +2,55 @@
 <html lang="en">
 <head>
    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+   <script src="app.js"></script>
   <meta charset="utf-8">
   <title>JavaScript Object Review</title>
   <link rel="stylesheet" href="styles.css">
  
 </head>
+<body>
 
 <div id="wrapper">
+
+
   
   Giphy Search: <input type="text" id="gifSearch">
   
-  <button id="submitTen" onclick="searchTenGifs()">Search 10</button>
+  <button class="op_button" id="submitTen">Search 10</button>
   
-  <button id="addSearchButton" onclick="addSearch()">Add Search Button</button>
+  <button id="addSearchButton" class="op_button">Add Search Button</button>
 
-  <button id="submitTrend" onclick="searchTrendingGifs()">Find Trending</button>
   
+  <button id="submitTrend" class="op_button">Find Trending</button>
   <div id="buttons-view"></div>
 
-  <button id='nextButton'>Next 10 >></button>
-  <div id= "displayArea">
+  <button id='scrollRightButton' class="op_button">&lt;&lt; Scroll</button>
 
-    <div id="tenImages">
+  <button id='scrollLeftButton' class="op_button">Scroll &gt;&gt;</button>
+  
+  <div class="outerDiv1">
+    <div id="searchedGifs">
+     
+     <div id="tenImages"></div>
 
     </div>
+  </div>
 
-    <h2 id="savedTitle">Saved Gifs</h2>
+   <h2 id="savedTitle">Saved Gifs</h2>
 
-    <div id="savedGifs1"></div>
-    
-    <button id='clearStorage'>Clear Saved Gifs</button>
+  <button id='scrollRightButton2' class="op_button">&lt;&lt; Scroll</button>
+
+  <button id='scrollLeftButton2' class="op_button">Scroll &gt;&gt;</button>
+
+ 
+  <div class="outerDiv2">
+    <div id="savedGifsContainer">
+      <div id="savedGifs1"></div>
+      <div id="placeHolder">Add Pictures To Save Here!</div>
+    </div>
+  </div>
+      
+    <button id='clearStorage' class="op_button">Clear Saved Gifs</button>
   </div>
 
   
@@ -39,201 +58,8 @@
 
 </div>
   
+</div>
 
   
-<body>
-
-  <script type="text/javascript">
-  var apiKey="dc6zaTOxFJmzC";
-  var url1="https://api.giphy.com/v1/gifs/"
-  var endpoint="search?";
-  var limit="10";
-  var giphyObject;
-  var nextTen=0;
-
-  var things = ["rat", "crow", "dingo", "insects"];
-
-
-  var savedGifs = JSON.parse(localStorage.getItem("savedGifsStorage"));
-    
-    if (!Array.isArray(savedGifs)) {
-      savedGifs = [];
-    }
-    else{
-    displaySaved();
-    }
-  //var savedGifs = [];
-
-
-  function renderButtons() {
-        $("#buttons-view").empty();
-        
-        for (var i = 0; i < things.length; i++) {
-          var newButton = $("<button>");
-          newButton.addClass("thing_button");
-          newButton.attr("data-name", things[i]);
-          newButton.text(things[i]);
-          
-          $("#buttons-view").append(newButton);
-        }
-      }
-
-  function addSearch(){
-        event.preventDefault();
-        
-        var thing = $("#gifSearch").val().trim();
-        things.push(thing);
-        renderButtons();
-  }
- 
-  function searchThingButton(){
-    
-    endpoint="search?";
-    
-    var title=$(this).attr("data-name");
-
-    var url=url1+endpoint+"api_key="+apiKey+"&q="+title+"&limit="+limit;
-
-    callGiphy(url);
-    
-    
-  }
-  
-  
-  function callGiphy(url){
-    $("#tenImages").empty();
-    $.ajax({url: url, method: "GET"})
-      .done(function(response){
-      console.log(response);
-      giphyObject=response;
-      for(i=0;i<response.data.length; i++){
-          var rating = response.data[i].rating;
-              var p = $("<p class='rate_p'>").text("Rating: " + rating);
-          //var imgSrc=response.data[i].images.original_still.url;
-          var imgSrc=response.data[i].images.fixed_height_small_still.url;
-
-          var img= new Image(); 
-          img.src=imgSrc;
-          img.className ='gif_image';
-          $(img).attr("data-pause_play",'pause');
-                
-          var saveButton="<button class='save_button'>Save</button>";
-          
-          var imgDiv=$("<div class='gifDiv' data-ref-num="+i+">");
-          
-          imgDiv.append(p);
-          imgDiv.append(saveButton);
-          imgDiv.append(img);
-
-          
-        $("#tenImages").append(imgDiv);
-      }
-    })
-  }
-  function pausePlay(){
-    var i=$(this).parent().attr('data-ref-num');
-        
-    var gifSrc=giphyObject.data[i].images.fixed_height_small.url;
-    
-    var imgSrc=giphyObject.data[i].images.fixed_height_small_still.url;
-    changeState(gifSrc,imgSrc,this);
-  }
-
-  function changeState(gifSrc,imgSrc, img){
-    var state=$(img).attr('data-pause_play');
-    if(state=='pause'){
-      $(img).attr('src',gifSrc);
-      $(img).attr('data-pause_play','play');
-    }
-    else{
-      $(img).attr('src',imgSrc);
-      $(img).attr('data-pause_play','pause');
-    }
-  }
-
-  function pausePlaySaved(){
-    var i=$(this).parent().attr('data-ref-num');
-    console.log(i);
-    var gifSrc=savedGifs[i].gifSrc;
-    var imgSrc=savedGifs[i].imgSrc;
-    changeState(gifSrc,imgSrc,this);
-  }
-  
-  function searchTenGifs(){
-    endpoint="search?";
-    
-    var search=$("#gifSearch").val().trim();
-    console.log(search);
-
-    var url=url1+endpoint+"api_key="+apiKey+"&q="+search+"&limit="+limit;
-
-    callGiphy(url);
-    
-    
-  }
-  function searchTrendingGifs(){
-    endpoint="trending?"
-    
-    var url=url1+endpoint+"api_key="+apiKey+"&limit="+limit;
-
-    callGiphy(url);
-  }
-  function saveGif(){
-    var i=$(this).parent().attr('data-ref-num');
-    var gifSrc=giphyObject.data[i].images.original.url;
-    console.log(gifSrc);
-    var imgSrc=giphyObject.data[i].images.original_still.url;
-    var img={gifSrc:gifSrc, imgSrc:imgSrc};
-    savedGifs.push(img);
-    console.log(savedGifs);
-    localStorage.setItem("savedGifsStorage",JSON.stringify(savedGifs));
-    //var savedId=savedGifs.indexOf(img);
-    
-    displaySaved();
-
-  }
-  function displaySaved(){
-    $("#savedGifs1").empty();
-    $("#savedGifs2").empty();
-
-    savedGifs = JSON.parse(localStorage.getItem("savedGifsStorage"));
-
-    for(var i=0; i<savedGifs.length; i++){
-      
-      var newDiv=$("<div class='savedDiv' data-ref-num="+i+">");
-      var deleteButt=$("<button class='delete_button'>");
-      deleteButt.text("X");
-      var imgS=$("<img src="+savedGifs[i].gifSrc+" class='saved_image data-pause_play='pause'>");
-      newDiv.append(imgS);
-      newDiv.append(deleteButt);
-     
-     $("#savedGifs1").append(newDiv);    
-     
-    }
-  }
-  function clearStorage(){
-    localStorage.removeItem("savedGifsStorage");
-    $("#savedGifs1").empty();
-    $("#savedGifs2").empty();
-    savedGifs=[];
-  }
-  function deleteGif(){
-    var i=$(this).parent().attr('data-ref-num');
-    savedGifs.splice(i,1);
-    localStorage.setItem("savedGifsStorage",JSON.stringify(savedGifs));
-    displaySaved();
-
-  }
-
-  $(document).on("click", ".thing_button", searchThingButton);
-  $(document).on("click", ".gif_image", pausePlay);
-  $(document).on("click", ".saved_image", pausePlaySaved);
-  $(document).on("click", ".save_button", saveGif);
-  $(document).on("click", "#clearStorage", clearStorage);
-  $(document).on("click", ".delete_button", deleteGif);
-
-      
-      renderButtons();
-
-    </script>
 </body>
+</html>
