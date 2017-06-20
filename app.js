@@ -7,7 +7,7 @@ $(document).ready(function(){
   var giphyObject;
   var nextTen=0;
 
-  var things = ["rat", "crow", "dingo", "insects"];
+  var things = ["space", "robot", "microscope", "neon"];
 
 
   var savedGifs = JSON.parse(localStorage.getItem("savedGifsStorage"));
@@ -157,7 +157,7 @@ $(document).ready(function(){
   }
   function displaySaved(){
     $("#savedGifs1").empty();
-    $("#savedGifs2").empty();
+    
 
     savedGifs = JSON.parse(localStorage.getItem("savedGifsStorage"));
 
@@ -194,16 +194,15 @@ $(document).ready(function(){
 
   }
   function scrollLeft(div) {
-    var elmnt = document.getElementById(div);
-    elmnt.scrollLeft += 50;
-    console.log("trying to scroll");
+  	var elmnt = document.getElementById(div);
+    $(elmnt).animate( { scrollLeft: '+=350' }, 500);
+	
 	}
 
 
 function scrollRight(div) {
 	var elmnt = document.getElementById(div);
-    elmnt.scrollLeft -= 50;
-    console.log("trying to scroll Right");
+    $(elmnt).animate( { scrollLeft: '-=350' }, 500);
     
 	}
 
@@ -231,5 +230,5 @@ function scrollRight(div) {
    
   
   renderButtons();
-  searchThingButton("neon");
+  searchThingButton("nature");
 });

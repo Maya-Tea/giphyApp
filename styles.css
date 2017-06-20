@@ -71,7 +71,8 @@ h2{
 }
 
 #savedTitle{
-	clear:both;
+	margin-top:40px;
+	margin-bottom: 0px;
 }
 
 .outerDiv2{
@@ -81,14 +82,15 @@ h2{
 }
 
 #placeHolder{
-	background-color: blue;
-	
+	background-color: darkblue;
+	/*position:absolute;*/
+	/*width:100%;*/
 	/*visibility: hidden;*/
 }
 
 #savedGifsContainer{
 	overflow-y: hidden;
-	overflow-x: scroll;
+	overflow-x: auto;
 	height:auto;
 	width:100%;
 	position:absolute;
@@ -144,7 +146,7 @@ h2{
 	display:inline-block;
 	cursor:pointer;
 	color:darkblue;
-	
+	margin-bottom: 40px;
 	font-size:17px;
 	padding:7px 25px;
 	
@@ -155,18 +157,15 @@ h2{
 	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
 	background-color:#bab1ba;
 }
-.round_buom:0px;
-	right:0px;
-	cursor:pointer;
-}
+
 .round_button:active {
 	position:relative;
 	top:1px;
 }
 .save_button{
 	position: absolute;
-	left:5px;
-	top:3px;
+	bottom:2px;
+	right:2px;
 	background-color: black;
 	color:pink;
 	cursor:pointer;
@@ -176,14 +175,23 @@ h2{
 	bottom:0px;
 	right:0px;
 
-.scroll{
-	font-size:30px;
-	cursor:pointer;
 }
-.scrollLabel{
-	font-size:30px;
+
+.scroll{
+	color:yellow;
+	font-size: 40px;
+	background-color: black;
+	border: 1px yellow solid;
+	cursor:pointer;
+	
+	margin:0px 20px;
+	position:relative;
+	bottom: -15px;
+
 }
 .scroll:hover{
+	color: gold;
+	border: 2px gold solid;
 	font-weight:bold;
 }
 
