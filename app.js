@@ -68,7 +68,7 @@ $(document).ready(function(){
       giphyObject=response;
       for(i=0;i<response.data.length; i++){
           var rating = response.data[i].rating;
-              var p = $("<p class='rate_p'>").text("Rating: " + rating);
+          var p = $("<p class='rate_p' id='rate"+i+"'>").text("Rating: " + rating);
           //var imgSrc=response.data[i].images.original_still.url;
           var imgSrc=response.data[i].images.fixed_height_small_still.url;
 
@@ -81,12 +81,24 @@ $(document).ready(function(){
           
           var imgDiv=$("<div class='gifDiv' data-ref-num="+i+">");
           
+         
           imgDiv.append(p);
           imgDiv.append(saveButton);
           imgDiv.append(img);
 
           
+          
         $("#tenImages").append(imgDiv);
+
+        imgDiv.hover(
+		  function() {
+		  	var rateId="rate"+i;
+		    $(this).attr('color','red');
+		    console.log("hover");
+		  }, function() {
+		    var rateId="rate"+i;
+		    $("#ratedId").attr('color','red');
+		  });
       }
     })
   }
@@ -144,6 +156,10 @@ $(document).ready(function(){
   	$("#placeHolder").attr('visibility','hidden');
 
     var i=$(this).parent().attr('data-ref-num');
+    $(this).css('background-color','black');
+    $(this).css('color','pink');
+    $(this).html('&#x2764;');
+    $(this).prop("disabled",true);
     var gifSrc=giphyObject.data[i].images.original.url;
     console.log(gifSrc);
     var imgSrc=giphyObject.data[i].images.original_still.url;
@@ -227,7 +243,8 @@ function scrollRight(div) {
   $("#scrollRightButton2").on("click", function(){
   	scrollRight("savedGifsContainer");
   });
-   
+
+     
   
   renderButtons();
   searchThingButton("nature");
